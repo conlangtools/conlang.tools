@@ -1,0 +1,63 @@
+$themes: (
+  light: (
+    'primary':      #f8f9fa,
+    'secondary' :   #e9ecef,
+    'alt' :         #ced4da,
+    'border' :      #ced4da,
+    'fg-primary':   #495057,
+    'fg-secondary': #868e96,
+    'fg-emphasis':  #212529,
+    'fg-alt':       #586067,
+    'accent':       #0ca678,
+    'analogue':     #ae3ec9,
+    'complement':   #f59f00,
+    'info':         #1c7ed6,
+    'success':      #37b24d,
+    'warn':         #f59f00,
+    'error':        #f03e3e,
+    'yellow':       #f59f00,
+    'orange':       #f76707,
+    'red':          #f03e3e,
+    'pink':         #d6336c,
+    'purple':       #ae3ec9,
+    'blue':         #1c7ed6,
+    'cyan':         #1098ad,
+    'green':        #37b24d,
+    'blurple':      #5865F2,
+  ),
+  dark: (
+    'primary':      #212529,
+    'secondary' :   #343a40,
+    'alt' :         #495057,
+    'border' :      #495057,
+    'fg-primary':   #dee2e6,
+    'fg-secondary': #868e96,
+    'fg-emphasis':  #ffffff,
+    'fg-alt':       #d9dde0,
+    'accent':       #ff922b,
+    'analogue':     #cc5de8,
+    'complement':   #d6336c,
+    'info':         #22b8cf,
+    'success':      #94d82d,
+    'warn':         #ffd43b,
+    'error':        #ff6b6b,
+    'yellow':       #ffd43b,
+    'orange':       #ff922b,
+    'red':          #ff6b6b,
+    'pink':         #f06595,
+    'purple':       #cc5de8,
+    'blue':         #5c7cfa,
+    'cyan':         #22b8cf,
+    'green':        #94d82d,
+    'blurple':      #5865F2,
+  ),
+);
+
+@each $name, $theme in $themes {
+  .theme-#{$name} {
+    @each $key, $value in $theme {
+      --c-#{$key}: #{$value};
+      --c-#{$key}-rgb: #{red($value)}, #{green($value)}, #{blue($value)};
+    }
+  }
+}
