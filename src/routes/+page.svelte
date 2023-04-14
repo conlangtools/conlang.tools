@@ -190,7 +190,7 @@
           <pre> </pre>
           <pre><span class="text-accent">trait</span> <span class="text-complement">Moisture</span> {'{'} <span class="text-pink">dry</span>, <span class="text-pink">moist</span>, <span class="text-pink">overmoist</span> {'}'}</pre>
           <pre> </pre>
-          <pre><span class="text-accent">class</span> <span class="text-analogue">X</span> <span class="text-accent">encodes</span> (<span class="text-complement">Place</span> <span class="text-complement">Moisture</span>) {'{'}</pre>
+          <pre><span class="text-accent">class</span> <span class="text-analogue">X</span> <span class="text-accent">encodes</span> (<span class="text-complement">Moisture</span> <span class="text-complement">Place</span>) {'{'}</pre>
           <pre>  <span class="text-fg-emphasis">☼</span> = <span class="text-pink">moist</span> <span class="text-pink">glandular</span>,</pre>
           <pre>  <span class="text-fg-emphasis">b</span> = <span class="text-pink">dry</span> <span class="text-pink">bipedal</span>,</pre>
           <pre>  <span class="text-fg-emphasis">б</span> = <span class="text-pink">moist</span> <span class="text-pink">bipedal</span>,</pre>
