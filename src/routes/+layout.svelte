@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-    <title>Conlang Tools</title> 
+    <title>Landing Page | conlang.tools</title> 
 </svelte:head>
 
 <div id="app" class="theme-{data.theme} bg-primary text-fg-primary">
