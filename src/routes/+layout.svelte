@@ -6,6 +6,10 @@
   export let data: LayoutData;
 </script>
 
+<svelte:head>
+    <title>Conlang Tools</title> 
+</svelte:head>
+
 <div id="app" class="theme-{data.theme} bg-primary text-fg-primary">
   <slot />
 </div>
