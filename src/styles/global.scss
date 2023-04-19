@@ -7,3 +7,19 @@
 html {
   scroll-behavior: smooth;
 }
+
+.bg-soft {
+  filter:
+    drop-shadow(0 0 20px var(--c-primary))
+    drop-shadow(0 0 10px var(--c-primary))
+    drop-shadow(0 0 10px var(--c-primary));
+}
+
+.bg-soft-tight {
+  filter:
+    drop-shadow(0 0 5px var(--c-primary))
+    drop-shadow(0 0 5px var(--c-primary))
+    drop-shadow(0 0 5px var(--c-primary))
+    drop-shadow(0 0 5px var(--c-primary))
+    drop-shadow(0 0 5px var(--c-primary));
+}
