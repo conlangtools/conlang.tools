@@ -58,7 +58,7 @@
 <NavBar />
 <main class="w-full relative pb-16 sm:pb-32">
   <IpaBackground />
-  <section class="flex justify-center items-center w-full h-screen">
+  <section class="flex justify-center sm:items-center w-full h-screen">
     <div class="pb-[8rem] px-4 pt-4 w-[min(72ch,100%)] max-w-full">
       <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-fg-emphasis mb-4 bg-soft-tight">
         conlang<span class="text-accent">.</span>tools
