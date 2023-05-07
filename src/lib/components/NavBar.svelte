@@ -1,5 +1,6 @@
 <script>
   import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+	import { faFileLines } from '@fortawesome/free-solid-svg-icons';
 
   import Logo from "./Logo.svelte";
 	import ThemeSwitch from './controls/ThemeSwitch.svelte';
@@ -19,6 +20,11 @@
     <ul class="flex gap-8 ml-auto flex-initial items-center">
       <li>
         <ThemeSwitch />
+      </li>
+      <li>
+        <IconButton icon={faFileLines} href="/docs" class="hover:!text-accent">
+          docs
+        </IconButton>
       </li>
       <li>
         <IconButton icon={faGithub} external href="https://github.com/conlangtools">

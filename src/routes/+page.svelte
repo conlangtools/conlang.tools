@@ -1,5 +1,4 @@
 <script lang="ts">
-	import NavBar from '$lib/components/NavBar.svelte';
   import IpaBackground from '../lib/components/IPABackground.svelte';
 	import Link from '$lib/components/controls/Link.svelte';
 	import ScrollToContentButton from '$lib/components/controls/ScrollToContentButton.svelte';
@@ -55,7 +54,6 @@
   }
 </style>
 
-<NavBar />
 <main class="w-full relative pb-16 sm:pb-32">
   <IpaBackground />
   <section class="flex justify-center sm:items-center w-full h-screen">
@@ -96,7 +94,7 @@
       <div slot="left">
         <Heading rank={2}>All-in-one</Heading>
         <P>Chronlang doesn't just do sound changes - you can use it to define and derive words and affixes to build up lexicons for entire language families.</P>
-        <P class="mt-4">Build your proto-language's lexicon, then specify different sound changes for as many daughter languages as you like. Chronlang will generate the child-lang lexicons automatically.</P>
+        <P>Build your proto-language's lexicon, then specify different sound changes for as many daughter languages as you like. Chronlang will generate the child-lang lexicons automatically.</P>
       </div>
       <Code slot="right">
         <pre><span class="text-accent">lang</span> <span class="text-analogue">PAM</span>: <span class="text-fg-alt">Proto-Auzger-Morlan</span></pre>
@@ -164,7 +162,7 @@
       <div slot="left">
         <Heading rank={2}>Customizable</Heading>
         <P>Chronlang provides sensible defaults for phoneme glyphs, features and categories, but sometimes assumptions just won't do, no matter how sensible.</P>
-        <P class="pt-4">Use the <InlineCode>trait</InlineCode> and <InlineCode>class</InlineCode> keywords to define your own phonemes and their features to create the most alien of languages.</P>
+        <P>Use the <InlineCode>trait</InlineCode> and <InlineCode>class</InlineCode> keywords to define your own phonemes and their features to create the most alien of languages.</P>
       </div>
       <Code slot="right">
         <pre><span class="text-accent">trait</span> <span class="text-complement">Place</span> {'{'} <span class="text-pink">manual</span>, <span class="text-pink">bipedal</span>, <span class="text-pink">glandular</span> {'}'}</pre>
