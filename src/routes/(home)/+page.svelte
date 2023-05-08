@@ -1,5 +1,5 @@
 <script lang="ts">
-  import IpaBackground from '../lib/components/IPABackground.svelte';
+  import IpaBackground from '$lib/components/IPABackground.svelte';
 	import Link from '$lib/components/controls/Link.svelte';
 	import ScrollToContentButton from '$lib/components/controls/ScrollToContentButton.svelte';
 	import SideBySide from '$lib/components/content/SideBySide.svelte';
