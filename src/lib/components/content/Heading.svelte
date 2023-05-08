@@ -2,12 +2,12 @@
   export let rank: 1 | 2 | 3 | 4 | 5 | 6;
 
   let rankClass = [
-    'text-5xl font-black',
-    'text-4xl font-black',
-    'text-3xl font-black',
-    'text-2xl font-black',
-    'text-xl font-black',
-    'text-xl font-semibold',
+    'text-5xl font-black    first:mt-0 mt-6',
+    'text-4xl font-black    first:mt-0 mt-6',
+    'text-3xl font-black    first:mt-0 mt-6',
+    'text-2xl font-black    first:mt-0 mt-6',
+    'text-xl  font-black    first:mt-0 mt-6',
+    'text-xl  font-semibold first:mt-0 mt-6',
   ][rank - 1];
 </script>
 
