@@ -4,7 +4,7 @@
 
   import Logo from "./Logo.svelte";
 	import ThemeSwitch from './controls/ThemeSwitch.svelte';
-	import IconButton from './controls/IconButton.svelte';
+	import NavButton from './NavButton.svelte';
 </script>
 
 <style>
@@ -22,19 +22,19 @@
         <ThemeSwitch />
       </li>
       <li>
-        <IconButton icon={faFileLines} href="/docs" class="hover:!text-accent">
+        <NavButton icon={faFileLines} href="/docs" class="hover:!text-accent">
           docs
-        </IconButton>
+        </NavButton>
       </li>
       <li>
-        <IconButton icon={faGithub} external href="https://github.com/conlangtools">
+        <NavButton icon={faGithub} external href="https://github.com/conlangtools">
           code
-        </IconButton>
+        </NavButton>
       </li>
       <li>
-        <IconButton icon={faDiscord} external href="https://discord.gg/yc5E5qbk6S" class="hover:!text-blurple">
+        <NavButton icon={faDiscord} external href="https://discord.gg/yc5E5qbk6S" class="hover:!text-blurple">
           chat
-        </IconButton>
+        </NavButton>
       </li>
     </ul>
   </nav>
