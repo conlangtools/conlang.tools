@@ -82,13 +82,13 @@
         <P>Chronlang is a simple computer language that allows you to define sound changes in a syntax based on linguistic literature and familiar to users of other popular sound change appliers.</P>
       </div>
       <Code slot="right">
-        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">ɒ</span> -&gt; <span class="text-fg-emphasis">o</span></pre>
+        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">ɒ</span> &gt; <span class="text-fg-emphasis">o</span></pre>
         <pre>  : <span class="text-fg-alt">/ɒ/ raises to /o/ unconditionally</span></pre>
         <pre> </pre>
-        <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+alveolar+stop</span>] -&gt; <span class="text-fg-emphasis">ɾ</span> / <span class="text-analogue">V</span><span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
+        <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+alveolar+stop</span>] &gt; <span class="text-fg-emphasis">ɾ</span> / <span class="text-analogue">V</span><span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
         <pre>  : <span class="text-fg-alt">alveolar stops lenite to flaps intervocalically</span></pre>
         <pre> </pre>
-        <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+stop</span>] -&gt; [<span class="text-success">+palatal</span>] / <span class="text-fg-emphasis">_</span>[<span class="text-analogue">V</span><span class="text-success">+high+front</span>]</pre>
+        <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+stop</span>] &gt; [<span class="text-success">+palatal</span>] / <span class="text-fg-emphasis">_</span>[<span class="text-analogue">V</span><span class="text-success">+high+front</span>]</pre>
         <pre>  : <span class="text-fg-alt">stops palatalize before high front vowels</span></pre>
       </Code>
     </SideBySide>
@@ -102,16 +102,16 @@
         <pre><span class="text-accent">lang</span> <span class="text-analogue">PAM</span>: <span class="text-fg-alt">Proto-Auzger-Morlan</span></pre>
         <pre><span class="text-accent">-</span> <span class="text-complement">hello</span> /<span class="text-fg-emphasis">gek</span>.<span class="text-fg-emphasis">wit</span>/ <span class="text-analogue">int</span>. <span class="text-fg-alt">A greeting said when meeting someone</span></pre>
         <pre> </pre>
-        <pre><span class="text-accent">lang</span> <span class="text-analogue">Aur</span> &lt;- <span class="text-analogue">PAM</span>: <span class="text-fg-alt">Auriinaga</span></pre>
-        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">kw</span> -&gt; <span class="text-fg-emphasis">p</span></pre>
-        <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+alveolar+stop</span>] -&gt; [<span class="text-success">+affricate</span>] / [<span class="text-analogue">V</span><span class="text-success">+palatal</span>]<span class="text-fg-emphasis">_</span><span class="text-complement">#</span> </pre>
+        <pre><span class="text-accent">lang</span> <span class="text-analogue">Aur</span> &lt; <span class="text-analogue">PAM</span>: <span class="text-fg-alt">Auriinaga</span></pre>
+        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">kw</span> &gt; <span class="text-fg-emphasis">p</span></pre>
+        <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+alveolar+stop</span>] &gt; [<span class="text-success">+affricate</span>] / [<span class="text-analogue">V</span><span class="text-success">+palatal</span>]<span class="text-fg-emphasis">_</span><span class="text-complement">#</span> </pre>
         <pre>// (PAM /gek.wit/ -&gt; Aur /ge.pit͡s/) </pre>
         <pre> </pre>
-        <pre><span class="text-accent">lang</span> <span class="text-analogue">Mor</span> &lt;- <span class="text-analogue">PAM</span>: <span class="text-fg-alt">Morlanii</span></pre>
-        <pre><span class="text-accent">$</span> <span class="text-analogue">C</span> -&gt; [<span class="text-error">-voiced</span>] / <span class="text-fg-emphasis">_</span><span class="text-complement">#</span></pre>
-        <pre><span class="text-accent">$</span> <span class="text-analogue">V</span> -&gt; [<span class="text-success">+round+long</span>] / <span class="text-fg-emphasis">w</span><span class="text-fg-emphasis">_</span></pre>
-        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">w</span> -&gt; [] / <span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
-        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">k</span> -&gt; <span class="text-fg-emphasis">h</span> / <span class="text-analogue">V</span><span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
+        <pre><span class="text-accent">lang</span> <span class="text-analogue">Mor</span> &lt; <span class="text-analogue">PAM</span>: <span class="text-fg-alt">Morlanii</span></pre>
+        <pre><span class="text-accent">$</span> <span class="text-analogue">C</span> &gt; [<span class="text-error">-voiced</span>] / <span class="text-fg-emphasis">_</span><span class="text-complement">#</span></pre>
+        <pre><span class="text-accent">$</span> <span class="text-analogue">V</span> &gt; [<span class="text-success">+round+long</span>] / <span class="text-fg-emphasis">w</span><span class="text-fg-emphasis">_</span></pre>
+        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">w</span> &gt; [] / <span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
+        <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">k</span> &gt; <span class="text-fg-emphasis">h</span> / <span class="text-analogue">V</span><span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
         <pre>// (PAM /gek.wit/ -&gt; Mor /ke.hy:t/)</pre>
       </Code>
     </SideBySide>
@@ -123,13 +123,13 @@
       <Code slot="right" class="flex diachronic-demo">
         <div class="relative mr-4">
           <pre><span class="text-accent">@</span> <span class="text-complement">100</span></pre>
-          <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+stop</span>] -&gt; [<span class="text-error">-voiced</span>]</pre>
+          <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+stop</span>] &gt; [<span class="text-error">-voiced</span>]</pre>
           <pre><span class="text-accent">@</span> <span class="text-complement">200</span></pre>
-          <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">ə</span> -&gt; <span class="text-fg-emphasis">ɪ</span> / <span class="text-fg-emphasis">k_</span></pre>
+          <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">ə</span> &gt; <span class="text-fg-emphasis">ɪ</span> / <span class="text-fg-emphasis">k_</span></pre>
           <pre><span class="text-accent">@</span> <span class="text-complement">500</span></pre>
-          <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+stop</span>] -&gt; [<span class="text-success">+fricative</span>] / <span class="text-analogue">V</span><span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
+          <pre><span class="text-accent">$</span> [<span class="text-analogue">C</span><span class="text-success">+stop</span>] &gt; [<span class="text-success">+fricative</span>] / <span class="text-analogue">V</span><span class="text-fg-emphasis">_</span><span class="text-analogue">V</span></pre>
           <pre><span class="text-accent">@</span> <span class="text-complement">1250</span></pre>
-          <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">ə</span>[<span class="text-analogue">V</span><span class="text-cyan">:α</span>] -&gt; [<span class="text-cyan">α</span><span class="text-success">+long</span>] </pre>
+          <pre><span class="text-accent">$</span> <span class="text-fg-emphasis">ə</span>[<span class="text-analogue">V</span><span class="text-cyan">:α</span>] &gt; [<span class="text-cyan">α</span><span class="text-success">+long</span>] </pre>
           <div class="bg-[rgba(var(--c-accent-rgb),0.2)] rounded h-[3.5rem] w-[calc(100%+1rem)] -m-2 absolute top-[calc((var(--highlighted)-1)*3.125rem)] opacity-[var(--highlighted)] left-0"></div>
         </div>
         <div class="border-l-4 border-l-[rgba(var(--c-accent-rgb),0.2)] border-dotted ps-3 text-fg-primary font-semibold text-lg">
@@ -180,7 +180,7 @@
         <pre>{'}'}</pre>
         <pre> </pre>
         <pre><span class="text-accent">-</span> <span class="text-complement">flimflark</span> /<span class="text-fg-emphasis">ϐ☼b</span>/</pre>
-        <pre><span class="text-accent">$</span> [<span class="text-analogue">X</span><span class="text-success">+glandular</span>] -&gt; [<span class="text-success">+dry</span>] / <span class="text-fg-emphasis">_#</span></pre>
+        <pre><span class="text-accent">$</span> [<span class="text-analogue">X</span><span class="text-success">+glandular</span>] &gt; [<span class="text-success">+dry</span>] / <span class="text-fg-emphasis">_#</span></pre>
       </Code>
     </SideBySide>
   </div>
