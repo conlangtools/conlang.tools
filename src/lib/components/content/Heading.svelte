@@ -9,8 +9,11 @@
     'text-xl font-black',
     'text-xl font-semibold',
   ][rank - 1];
+
+  export let softBg: boolean = true;
+  let softBgClass = softBg ? "bg-soft-tight" : "";
 </script>
 
-<svelte:element this={`h${rank}`} class="text-fg-emphasis mb-2 bg-soft-tight {rankClass} {$$props.class}">
+<svelte:element this={`h${rank}`} class="text-fg-emphasis mb-2 {softBgClass} {rankClass} {$$props.class}">
   <slot />
 </svelte:element>
