@@ -1,5 +1,4 @@
 <script lang="ts">
-	import NavBar from '$lib/components/NavBar.svelte';
   import IpaBackground from '../lib/components/IPABackground.svelte';
 	import Link from '$lib/components/controls/Link.svelte';
 	import ScrollToContentButton from '$lib/components/controls/ScrollToContentButton.svelte';
@@ -55,7 +54,10 @@
   }
 </style>
 
-<NavBar />
+<svelte:head>
+    <title>Landing Page | conlang.tools</title> 
+</svelte:head>
+
 <main class="w-full relative pb-16 sm:pb-32">
   <IpaBackground />
   <section class="flex justify-center sm:items-center w-full h-screen">

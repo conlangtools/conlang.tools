@@ -4,6 +4,7 @@
   import Logo from "./Logo.svelte";
 	import ThemeSwitch from './controls/ThemeSwitch.svelte';
 	import IconButton from './controls/IconButton.svelte';
+	import NavLink from './NavLink.svelte';
 </script>
 
 <style>
@@ -15,7 +16,14 @@
 
 <aside class="sm:fixed xs:bg-secondary w-full bg-radial z-50">
   <nav class="flex p-4 pe-6 items-center">
-    <Logo />
+    <a href="/">
+      <Logo />
+    </a>
+    <ul class="flex gap-8 ml-12 flex-initial items-center">
+      <li>
+        <NavLink href="/sandbox">Sandbox</NavLink>
+      </li>
+    </ul>
     <ul class="flex gap-8 ml-auto flex-initial items-center">
       <li>
         <ThemeSwitch />
