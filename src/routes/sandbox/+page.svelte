@@ -85,7 +85,7 @@ $ ə > [] / _#   : word-final schwa is lost`
         bind:this={textarea}
         on:selectionchange={updateCursor}
         bind:value={code}
-        class="peer block grow whitespace-pre font-mono overflow-auto p-4 rounded-t font-semibold text-fg-secondary bg-alt border-2 border-border border-b-0 focus:outline-none focus:ring-0 focus:bg-secondary focus:border-accent focus:text-fg-emphasis" />
+        class="peer block grow whitespace-pre font-mono overflow-auto p-4 rounded-t font-semibold text-fg-secondary bg-alt border-2 border-border border-b-0 focus:outline-none focus:ring-0 focus:bg-secondary focus:border-accent focus:text-fg-emphasis selection:bg-[rgba(var(--c-complement-rgb),0.5)]" />
       <div class="bg-alt font-mono rounded-b border-2 border-border border-t-0 h-6 flex gap-3 items-center justify-end px-2 text-sm font-semibold peer-focus:bg-accent peer-focus:border-accent peer-focus:text-primary">
         {#if cursorPosition !== undefined}
           <div>sandbox.lang {cursorPosition.line}:{cursorPosition.column}</div>
