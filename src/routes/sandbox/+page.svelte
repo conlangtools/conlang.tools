@@ -38,11 +38,34 @@ $ ə > [] / _#   : word-final schwa is lost`
 
   let module: Module;
 
-  $: compile(code, "sandbox")
+  $: compile(code, "sandbox.lang")
       .then(mod => {
         module = mod
       })
 
+  let textarea: HTMLTextAreaElement;
+  let cursorPosition: { line: number, column: number };
+
+  $: textarea && updateCursor();
+
+  function updateCursor() {
+    cursorPosition = offsetToSpan(textarea.selectionStart, code);
+  }
+
+  function setCursorPosition(span: typeof module.errors[0]["span"]) {
+    textarea.focus()
+    textarea.selectionStart = span.start.offset;
+    textarea.selectionEnd = span.end.offset;
+  }
+
+  function offsetToSpan(offset: number, source: string) {
+    const textBefore = source.slice(0, offset)
+    const lines = textBefore.split("\n")
+    const line = lines.length;
+    const column = (lines.at(-1)?.length ?? 0) + 1
+
+    return { line, column, offset }
+  };
   
   let selectedMilestone: typeof module.milestones[0];
   let snapshot: Snapshot;
@@ -57,9 +80,18 @@ $ ə > [] / _#   : word-final schwa is lost`
 <main class="w-full relative px-4 pt-24 h-full h-100">
   <Heading rank={2}>Sandbox</Heading>
   <div class="grid grid-cols-2 gap-4 h-[calc(100vh-144px)] pb-4">
-    <textarea
-      bind:value={code}
-      class="block whitespace-pre font-mono overflow-auto p-4 rounded font-semibold text-fg-secondary bg-secondary border border-border" />
+    <div class="flex flex-col">
+      <textarea
+        bind:this={textarea}
+        on:selectionchange={updateCursor}
+        bind:value={code}
+        class="peer block grow whitespace-pre font-mono overflow-auto p-4 rounded-t font-semibold text-fg-secondary bg-alt border-2 border-border border-b-0 focus:outline-none focus:ring-0 focus:bg-secondary focus:border-accent focus:text-fg-emphasis" />
+      <div class="bg-alt font-mono rounded-b border-2 border-border border-t-0 h-6 flex gap-3 items-center justify-end px-2 text-sm font-semibold peer-focus:bg-accent peer-focus:border-accent peer-focus:text-primary">
+        {#if cursorPosition !== undefined}
+          <div>sandbox.lang {cursorPosition.line}:{cursorPosition.column}</div>
+        {/if}
+      </div>
+    </div>
     <div class="overflow-y-auto overflow-x-hidden">
       {#if module === undefined}
         <p>Start writing some code to see the output here...</p>
@@ -78,7 +110,10 @@ $ ə > [] / _#   : word-final schwa is lost`
                   <p>{error.message}</p>
                   <p class="text-error">
                     at
-                    <span class="font-semibold underline">{`${error.span.source} ${error.span.start.line}:${error.span.start.column}`}</span>
+                    <button
+                      class="font-semibold underline"
+                      on:click={() => setCursorPosition(error.span)}
+                    >{`${error.span.source} ${error.span.start.line}:${error.span.start.column}`}</button>
                   </p>
                 </article>
               {/each}
@@ -99,7 +134,10 @@ $ ə > [] / _#   : word-final schwa is lost`
                   <p>{warning.message}</p>
                   <p class="text-error">
                     at
-                    <span class="font-semibold underline">{`${warning.span.source} ${warning.span.start.line}:${warning.span.start.column}`}</span>
+                    <button
+                      class="font-semibold underline"
+                      on:click={() => setCursorPosition(warning.span)}
+                    >{`${warning.span.source} ${warning.span.start.line}:${warning.span.start.column}`}</button>  
                   </p>
                 </article>
               {/each}
