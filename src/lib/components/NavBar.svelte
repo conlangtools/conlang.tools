@@ -9,8 +9,14 @@
 
 <style>
   .bg-radial {
-    background-image: linear-gradient(180deg, rgba(var(--c-accent-rgb), 0.2) 0%, transparent 100%);
+    --bg-radial-accent-opacity: 0.2;
+
+    background-image: linear-gradient(180deg, rgba(var(--c-accent-rgb), var(--bg-radial-accent-opacity)) 0%, transparent 100%);
     background-position: top;
+  }
+
+  :global(.theme-dark .bg-radial) {
+    --bg-radial-accent-opacity: 0.1;
   }
 </style>
 

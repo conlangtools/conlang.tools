@@ -1,14 +1,19 @@
+@use 'sass:color';
+
 $themes: (
   light: (
     'primary':      #f8f9fa,
-    'secondary' :   #dee2e6,
-    'alt' :         #ced4da,
-    'border' :      #adb5bd,
+    'secondary' :   #e9ecef,
+    'alt' :         #dee2e6,
+    'border' :      #ced4da,
+    'highlight':    #BDE4DA,
+    'hl-secondary': #AAD3CB,
     'fg-primary':   #495057,
     'fg-secondary': #495057,
     'fg-emphasis':  #212529,
     'fg-alt':       #586067,
     'accent':       #0ca678,
+    'accent-light': #12b886,
     'analogue':     #ae3ec9,
     'complement':   #f59f00,
     'info':         #1c7ed6,
@@ -30,15 +35,18 @@ $themes: (
     'secondary' :   #14171a,
     'alt' :         #1B1E22,
     'border' :      #3F454C,
+    'highlight':    #59402A,
+    'hl-secondary': #43301d,
     'fg-primary':   #dee2e6,
     'fg-secondary': #868e96,
     'fg-emphasis':  #ffffff,
     'fg-alt':       #d9dde0,
     'accent':       #ff922b,
+    'accent-light': #ffa94d,
     'analogue':     #cc5de8,
     'complement':   #d6336c,
     'info':         #22b8cf,
-    'success':      #94d82d,
+    'success':      #20c997,
     'warn':         #ffd43b,
     'error':        #ff6b6b,
     'yellow':       #ffd43b,
@@ -48,7 +56,7 @@ $themes: (
     'purple':       #cc5de8,
     'blue':         #5c7cfa,
     'cyan':         #22b8cf,
-    'green':        #94d82d,
+    'green':        #20c997,
     'blurple':      #5865F2,
   ),
 );
@@ -57,7 +65,10 @@ $themes: (
   .theme-#{$name} {
     @each $key, $value in $theme {
       --c-#{$key}: #{$value};
-      --c-#{$key}-rgb: #{red($value)}, #{green($value)}, #{blue($value)};
+      --c-#{$key}-rgb:
+        #{color.channel($value, "red", $space: rgb)},
+        #{color.channel($value, "green", $space: rgb)},
+        #{color.channel($value, "blue", $space: rgb)};
     }
   }
 }

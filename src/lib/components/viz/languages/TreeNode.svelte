@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { type Language } from "@conlangtools/chronlang-engine";
-  import { type Node } from "./tree";
+	import type { Language } from "@conlangtools/chronlang-engine";
+  import type { Node } from "$lib/chronlang/tree";
 
   export let language: Language;
   export let children: Node[];
-  export let activeLang: string;
+  export let activeLang: string | null;
 </script>
 
 <li class={$$props.class}>
