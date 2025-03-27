@@ -37,10 +37,12 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@conlangtools/chronlang-engine": "0.1.x",
+		"@conlangtools/chronlang-engine": "^0.1.25",
 		"@fortawesome/free-brands-svg-icons": "^6.4.0",
 		"@fortawesome/free-solid-svg-icons": "^6.4.0",
+		"@protobufjs/path": "^1.1.2",
 		"js-cookie": "^3.0.1",
+		"monaco-editor": "^0.52.2",
 		"sass": "^1.60.0",
 		"svelte-fa": "^3.0.3"
 	}

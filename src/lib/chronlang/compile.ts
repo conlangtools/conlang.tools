@@ -1,4 +1,6 @@
+import type { SandboxFile } from "$stores/sandbox";
 import { compileModule, type Module, type ModuleResolver } from "@conlangtools/chronlang-engine"
+import { resolve as resolvePath } from "@protobufjs/path"
 
 type ResolutionResult =
 | { ok: true; module: Module }
@@ -9,7 +11,7 @@ class Resolver implements ModuleResolver {
     private readonly sources: Map<string, string>,
   ) {}
 
-  private resolve(sourceName: string): ResolutionResult {
+  protected resolve(sourceName: string): ResolutionResult {
     const source = this.sources.get(sourceName);
 
     if (source === undefined) {
@@ -29,8 +31,32 @@ class Resolver implements ModuleResolver {
     return this.resolve(`@${scope}${path}`);
   }
 
-  public resolveLocal(path: string, absolute: boolean): ResolutionResult {
+  public resolveLocal(path: string, absolute: boolean, currentPath: string): ResolutionResult {
     return this.resolve(absolute ? "/" : "" + path);
+  }
+}
+
+export class SandboxResolver extends Resolver {
+  constructor(
+    private readonly files: SandboxFile[]
+  ) {
+    super(stdlib)
+  }
+
+  public resolveLocal(path: string, absolute: boolean, currentPath: string): ResolutionResult {
+    const absolutePath = absolute ? path : resolvePath(currentPath, path)
+    const file = this.files.find(f => f.path === absolutePath)
+    if (file === undefined) {
+      return {
+        ok: false,
+        error: `No file is defined with path '${absolutePath}'.`,
+      };
+    }
+
+    return {
+      ok: true,
+      module: compileModule(file.content, file.path, this)
+    }
   }
 }
 
@@ -147,6 +173,6 @@ const stdlib = new Map([
   `]
 ])
 
-export default async function compile(source: string, sourceName: string): Promise<Module> {
-  return compileModule(source, sourceName, new Resolver(stdlib))
+export default async function compile(source: string, sourceName: string, resolver = new Resolver(stdlib)): Promise<Module> {
+  return compileModule(source, sourceName, resolver)
 }
