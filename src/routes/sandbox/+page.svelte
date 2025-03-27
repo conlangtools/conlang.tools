@@ -1,7 +1,10 @@
 <script lang="ts">
   import Editor from "$lib/components/editor/Editor.svelte";
-	import FileTree from "$lib/components/editor/FileTree.svelte";
 </script>
+
+<svelte:head>
+  <title>Sandbox | conlang.tools</title> 
+</svelte:head>
 
 <main class="h-screen pt-[68px]">
   <Editor />
