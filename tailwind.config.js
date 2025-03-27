@@ -6,7 +6,7 @@ export default {
   theme: {
     fontFamily: {
       'sans': ['Fira Sans', ...defaultTheme.fontFamily.sans],
-      'mono': ['Fira Code', 'Fira Mono', ...defaultTheme.fontFamily.sans],
+      'mono': ['Noto Sans Mono', ...defaultTheme.fontFamily.sans],
     },
     colors: {
       'transparent': 'transparent',
@@ -14,11 +14,14 @@ export default {
       'secondary': 'var(--c-secondary)',
       'alt': 'var(--c-alt)',
       'border': 'var(--c-border)',
+      'highlight': 'var(--c-highlight)',
+      'highlight-secondary': 'var(--c-hl-secondary)',
       'fg-primary': 'var(--c-fg-primary)',
       'fg-secondary': 'var(--c-fg-secondary)',
       'fg-emphasis': 'var(--c-fg-emphasis)',
       'fg-alt': 'var(--c-fg-alt)',
       'accent': 'var(--c-accent)',
+      'accent-light': 'var(--c-accent-light)',
       'analogue': 'var(--c-analogue)',
       'complement': 'var(--c-complement)',
       'info': 'var(--c-info)',

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { type Language } from "@conlangtools/chronlang-engine";
-	import { buildLanguageTrees } from "./tree";
+	import type { Language } from "@conlangtools/chronlang-engine";
+	import { buildLanguageTrees } from "../../../chronlang/tree";
 	import TreeNode from "./TreeNode.svelte";
 
   export let languages: Map<string, Language>;
-  export let activeLang: string;
+  export let activeLang: string | null = null;
 
   let rootNodes;
   $: rootNodes = buildLanguageTrees(languages)
