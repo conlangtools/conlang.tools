@@ -10,6 +10,7 @@
 	import { browser } from "$app/environment";
   import { files } from "$stores/sandbox";
 	import compile, { SandboxResolver } from "$lib/chronlang/compile";
+	import applyXSampaExtension from "$lib/editor-extensions/xsampa";
 
   const dispatch = createEventDispatcher();
 
@@ -18,10 +19,9 @@
   let editorDiv: HTMLDivElement;
   let editor: monaco.editor.IStandaloneCodeEditor;
   let Monaco: typeof import("monaco-editor");
-  let pendingJump: monaco.IRange | null = null
+  let pendingJump: monaco.IRange | null = null;
 
   $: if (browser && editor) editor.setModel(model);
-
   $: if (pendingJump !== null && editor !== undefined) jumpToRange(pendingJump)
 
   export function jumpToRange(range: monaco.IRange) {
@@ -80,7 +80,7 @@
 
     editor = Monaco.editor.create(editorDiv, {
       theme: $theme === "light" ? "ct-light" : "ct-dark",
-      fontFamily: "Noto Sans Mono",
+      fontFamily: '"Noto Sans Mono", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
       fontWeight: "600",
       fontSize: 16,
     });
@@ -101,6 +101,8 @@
     editor.onDidChangeCursorSelection(({ selection }) => {
       dispatch("changeSelection", { selection })
     })
+
+    applyXSampaExtension(editor)
 
     editor.setModel(model)
 
