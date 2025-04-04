@@ -1,6 +1,6 @@
 <script lang="ts">
   import Fa from "svelte-fa";
-	import { faCircleXmark, faFile, faFileCirclePlus, faFileExport, faTrash, faTrashAlt, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
+	import { faCircleXmark, faFile, faFileCirclePlus, faFileExport, faTrashAlt, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 	import { tick, createEventDispatcher, onMount } from "svelte";
   import { files, createFile } from "$stores/sandbox";
 	import InlineCode from "../content/InlineCode.svelte";

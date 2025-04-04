@@ -2,35 +2,22 @@
   import type * as monaco from "monaco-editor/esm/vs/editor/editor.api"
 	import FileTree from "./FileTree.svelte";
 	import CodePane from "./CodePane.svelte";
-	import { files } from "$stores/sandbox";
-	import { faBook, faCircleExclamation, faCode, faDiagramProject, faTableColumns, faTicket, faXmark } from "@fortawesome/free-solid-svg-icons";
+	import { compileProject, files } from "$stores/sandbox";
+	import { faBook, faCircleExclamation, faCode, faDiagramProject, faTableColumns, faXmark } from "@fortawesome/free-solid-svg-icons";
 	import Fa from "svelte-fa";
-	import type { Module, Snapshot } from "@conlangtools/chronlang-engine";
-	import compile, { SandboxResolver } from "$lib/chronlang/compile";
 	import LanguagesPane from "./LanguagesPane.svelte";
 	import { onMount, tick } from "svelte";
 	import MilestoneSelector from "./MilestoneSelector.svelte";
 	import ProblemsTool from "./ProblemsTool.svelte";
 	import ProblemsPane from "./ProblemsPane.svelte";
 	import DictionaryPane from "./DictionaryPane.svelte";
+  import { module } from "$stores/sandbox"
 
   let editor: CodePane;
   let selectedModel: monaco.editor.ITextModel | null = null;
   let selection: monaco.Selection | null = null
   let activeTab: "code" | "languages" | "dictionary" | "problems" = "code"
   let split = false
-
-  let module: Module | null = null;
-  let selectedMilestone: Module['milestones'][number] | null = null;
-  let snapshot: Snapshot;
-
-  $: if(module && selectedMilestone) {
-    snapshot = module.snapshot(selectedMilestone.language, selectedMilestone.starts + 0.0001)
-  }
-
-  $: if (selectedMilestone === null && module !== null && module.milestones.length > 0) {
-    selectedMilestone = module.milestones[0];
-  }
 
   $: if (split && activeTab === "code") {
     activeTab = "languages"
@@ -51,30 +38,6 @@
     getModelByPath(file.path)?.dispose();
     selectedModel = createModel(file.path, file.content)
     if (!split) activeTab = "code"
-  }
-
-  async function compileProject() {
-    const root = $files.find(f => f.isModuleRoot);
-    if (root === undefined) return;
-    module = await compile(root.content, root.path, new SandboxResolver($files));
-    if (selectedMilestone !== null) {
-      if (!module.hasMilestone(selectedMilestone)) selectedMilestone = null;
-    }
-    $files.forEach(file => {
-      file.hasErrors = module!.errors.some(e => e.span.source === file.path);
-      file.hasWarnings = module!.warnings.some(e => e.span.source === file.path)
-    })
-    for (const error of module.errors) {
-      const file = $files.find(f => f.path === error.span.source)
-      if (file === undefined) continue;
-      file.hasErrors = true;
-    }
-    for (const warning of module.warnings) {
-      const file = $files.find(f => f.path === warning.span.source)
-      if (file === undefined) continue;
-      file.hasWarnings = true;
-    }
-    files.set($files)
   }
 
   async function toggleSplit() {
@@ -161,15 +124,15 @@
                 <Fa icon={faXmark} />
               </button>
             </div>
-            {#if module === null}
+            {#if $module === null}
               <p class="text-lg">No information to show.</p>
             {:else}
               {#if activeTab === "languages"}
-                <LanguagesPane languages={module.languages} selectedMilestone={selectedMilestone} />
+                <LanguagesPane />
               {:else if activeTab === "problems"}
-                <ProblemsPane errors={module.errors} warnings={module.warnings} on:jump={handleJump} />
+                <ProblemsPane on:jump={handleJump} />
               {:else if activeTab === "dictionary"}
-                <DictionaryPane snapshot={snapshot} on:jump={handleJump} />
+                <DictionaryPane on:jump={handleJump} />
               {/if}
             {/if}
           </div>
@@ -179,8 +142,8 @@
   </div>
   <div class="bg-secondary flex flex-nowrap justify-start items-center">
     <div class="ml-auto"></div>
-    <ProblemsTool active={activeTab === "problems"} errors={module?.errors ?? []} warnings={module?.warnings ?? []} on:click={showProblems}/>
-    <MilestoneSelector bind:value={selectedMilestone} milestones={module?.milestones ?? []} />
+    <ProblemsTool active={activeTab === "problems"} on:click={showProblems}/>
+    <MilestoneSelector />
     <div class="w-12 text-center font-semibold text-sm">
       {#if selection !== null}
         {selection.getSelectionStart().lineNumber}:{selection.getSelectionStart().column}

@@ -115,6 +115,7 @@
   });
 
   export function setSize() {
+    if (editor === undefined) return;
     if (editorDiv?.parentElement === null) return;
     const rect = editorDiv.parentElement.getBoundingClientRect();
     editor.layout({ width: rect.width, height: rect.height });

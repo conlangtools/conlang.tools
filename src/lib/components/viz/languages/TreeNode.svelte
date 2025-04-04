@@ -5,24 +5,29 @@
   export let language: Language;
   export let children: Node[];
   export let activeLang: string | null;
+  export let highlightedLangs: string[] = [];
 </script>
 
 <li class={$$props.class}>
-  <span class:active={language.id === activeLang}>{language.name}</span>
+  <div class:active={language.id === activeLang} class:highlighted={highlightedLangs.includes(language.id)}>
+    <p class="font-semibold">{language.name}</p>
+    <p class="font-mono text-fg-secondary text-sm">{language.id}</p>
+  </div>
   {#if children.length > 0}
-    <ul>
+    <ul class:highlighted={highlightedLangs.includes(language.id)}>
       {#each children as child}
-        <svelte:self language={child.language} children={child.children} {activeLang} />
+        <svelte:self language={child.language} children={child.children} {activeLang} {highlightedLangs} />
       {/each}
     </ul>
   {/if}
 </li>
 
 <style lang="scss">
-  $border-width: 2px;
+  $line-width: 2px;
 
   ul {
-    --border: #{$border-width} solid var(--c-border);
+    --line-color: var(--c-border);
+    --line: #{$line-width} solid var(--line-color);
 
     position: relative;
     padding: 1em 0;
@@ -39,15 +44,16 @@
     &::before {
       content: '';
       position: absolute;
-      top: $border-width;
+      top: $line-width;
       left: 50%;
-      border-left: $border-width solid var(--c-border);
+      border-left: var(--line);
       width: 0;
       height: 1em;
     }
   }
 
   li {
+
     display: inline-block;
     vertical-align: top;
     text-align: center;
@@ -59,9 +65,9 @@
     &::after {
       content: '';
       position: absolute;
-      top: $border-width;
+      top: $line-width;
       right: 50%;
-      border-top: var(--border);
+      border-top: var(--line);
       width: 50%;
       height: 1em;
     }
@@ -69,12 +75,12 @@
     &::after {
       right: auto;
       left: 50%;
-      border-left: var(--border);
+      border-left: var(--line);
     }
 
     &:only-child {
       padding-top: 0;
-      top: -#{$border-width};
+      top: -#{$line-width};
 
       &::after,
       &::before {
@@ -88,7 +94,7 @@
     }
 
     &:last-child::before{
-      border-right: var(--border);
+      border-right: var(--line);
       border-radius: 0 5px 0 0;
     }
 
@@ -102,8 +108,8 @@
     }
   }
 
-  span {
-    border: var(--border);
+  div {
+    border: #{$line-width} solid var(--line-color);
     padding: 0.5em 1em;
     text-decoration: none;
     display: inline-block;
@@ -111,15 +117,21 @@
     color: var(--c-fg-primary);
     background-color: var(--c-primary);
     position: relative;
-    top: $border-width;
+    top: $line-width;
+    
+    &.highlighted {
+      --line-color: var(--c-fg-secondary);
+
+      --tint: rgba(var(--c-fg-secondary-rgb), 0.1);
+      background: var(--c-alt);
+    }
 
     &.active {
-      border-color: var(--c-accent);
+      --line-color: var(--c-accent);
       color: var(--c-accent);
       font-weight: 600;
-      --tint: rgba(var(--c-accent-rgb), 0.1);
-      background: linear-gradient(var(--tint), var(--tint)),
-                  linear-gradient(var(--c-primary), var(--c-primary));
+
+      background: rgba(var(--c-accent-rgb), 0.1);
     }
   }
 </style>

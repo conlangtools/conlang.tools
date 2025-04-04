@@ -5,18 +5,28 @@
 
   export let languages: Map<string, Language>;
   export let activeLang: string | null = null;
+  export let highlightedLangs: string[];
 
   let rootNodes;
   $: rootNodes = buildLanguageTrees(languages)
 </script>
 
+<section class="tree mt-0 w-full overflow-auto">
+  <ul class="w-full">
+    {#each rootNodes as { language, children }}
+      <TreeNode {language} {children} {activeLang} {highlightedLangs} class="root"/>
+    {/each}
+  </ul>
+</section>
+
 <style lang="scss">
-  $border-width: 2px;
+  $line-width: 2px;
 
   .tree {
-    --border: #{$border-width} solid var(--c-border);
-
     ul {
+      --line-color: var(--c-border);
+      --line: #{$line-width} solid var(--line-color);
+
       position: relative;
       padding-top: 1em;
       white-space: nowrap;
@@ -31,12 +41,4 @@
     }
   }
 </style>
-
-<section class="tree mt-0 w-full overflow-x-auto">
-  <ul class="w-full">
-    {#each rootNodes as { language, children }}
-      <TreeNode {language} {children} {activeLang} class="root"/>
-    {/each}
-  </ul>
-</section>
 

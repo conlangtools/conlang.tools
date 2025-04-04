@@ -1,5 +1,8 @@
 import { browser } from "$app/environment";
-import { writable } from "svelte/store";
+import compile, { SandboxResolver } from "$lib/chronlang/compile";
+import { getTimeline } from "$lib/chronlang/tree";
+import type { Module, Snapshot } from "@conlangtools/chronlang-engine";
+import { get, readonly, writable } from "svelte/store";
 
 export type SandboxFile = {
   path: string;
@@ -75,4 +78,82 @@ export const files = writable<SandboxFile[]>(browser
 
 if (browser) {
   files.subscribe((value) => localStorage.setItem(LS_KEY, JSON.stringify(value)))
+}
+
+export type Milestone = Module["milestones"][number]
+
+const _module = writable<Module | null>(null);
+export const module = readonly(_module);
+
+type Selection = {
+  milestone: Milestone | null,
+  path: Milestone[]
+}
+const _milestoneSelection = writable<Selection>({
+  milestone: null,
+  path: []
+});
+export const milestoneSelection = readonly(_milestoneSelection)
+
+const _snapshot = writable<Snapshot | null>(null);
+export const snapshot = readonly(_snapshot);
+
+export function setSelectedMilestone(milestone: Module['milestones'][number], shouldUpdatePath: boolean = false) {
+  const mod = get(module)
+  if (mod === null) return;
+
+  const selection = get(milestoneSelection)
+  const path = shouldUpdatePath
+    ? getTimeline(mod.languages, milestone.language)
+    : selection.path;
+
+  _milestoneSelection.set({ milestone, path })
+  _snapshot.set(mod.snapshot(milestone.language, milestone.starts + 0.0001));
+}
+
+export async function compileProject() {
+  const $files = get(files)
+  const root = $files.find(f => f.isModuleRoot);
+  if (root === undefined) return;
+
+  const mod = await compile(root.content, root.path, new SandboxResolver($files));
+  _module.set(mod)
+  
+  const { milestone } = get(milestoneSelection)
+  if (milestone === null) {
+    if (mod.milestones.length > 0) setSelectedMilestone(mod.milestones.at(-1)!, true)
+  } else if (!mod.hasMilestone(milestone)) {
+    _milestoneSelection.set({
+      milestone: null,
+      path: []
+    });
+  }
+  
+  updateFileErrors()
+}
+
+function updateFileErrors() {
+  const $files = get(files)
+  const $module = get(module)
+
+  if ($module === null) return;
+
+  $files.forEach(file => {
+    file.hasErrors = $module.errors.some(e => e.span.source === file.path);
+    file.hasWarnings = $module.warnings.some(e => e.span.source === file.path)
+  })
+
+  for (const error of $module.errors) {
+    const file = $files.find(f => f.path === error.span.source)
+    if (file === undefined) continue;
+    file.hasErrors = true;
+  }
+  
+  for (const warning of $module.warnings) {
+    const file = $files.find(f => f.path === warning.span.source)
+    if (file === undefined) continue;
+    file.hasWarnings = true;
+  }
+
+  files.set($files)
 }

@@ -3,9 +3,16 @@
 	import { faChevronDown, faChevronRight, faCircleCheck, faCircleXmark, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 	import { createEventDispatcher } from "svelte";
 	import Fa from "svelte-fa";
+  import { module } from "$stores/sandbox"
+  
+  let errors: Module['errors'] = []
+  let warnings: Module['warnings'] = []
 
-  export let errors: Module['errors']
-  export let warnings: Module['warnings']
+  module.subscribe(mod => {
+    if (mod === null) return;
+    errors = mod.errors
+    warnings = mod.warnings
+  })
 
   const dispatch = createEventDispatcher();
   

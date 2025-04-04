@@ -2,10 +2,19 @@
 	import type { Module } from "@conlangtools/chronlang-engine";
 	import { faCircleXmark, faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 	import Fa from "svelte-fa";
+  import { module } from "$stores/sandbox"
 
   export let active: boolean
-  export let errors: Module['errors']
-  export let warnings: Module['warnings']
+  
+  let errors: Module['errors'] = []
+  let warnings: Module['warnings'] = []
+
+  module.subscribe(mod => {
+    if (mod === null) return;
+    errors = mod.errors
+    warnings = mod.warnings
+  })
+
 </script>
 
 <button class="font-semibold text-sm flex gap-3 items-stretch px-2 h-full {active ? "bg-primary" : "bg-secondary hover:bg-primary"}" on:click>
