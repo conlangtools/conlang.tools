@@ -118,12 +118,14 @@
       
       {#if activeTab !== "code"}
         <div class="bg-secondary min-h-0 max-h-full overflow-hidden">
-          <div class="bg-primary h-full p-4 {split && "mt-2 mr-1 rounded-lg"} max-h-full">
-            <div class="flex justify-end w-full -mb-6 ">
-              <button on:click={handleCloseSplit} class="rounded-full flex justify-center w-6 items-center aspect-square transition-colors bg-transparent hover:bg-border">
-                <Fa icon={faXmark} />
-              </button>
-            </div>
+          <div class="bg-primary h-full p-4 {split && "mt-2 mr-1 rounded-lg"} max-h-full relative">
+            {#if split}
+              <div class="flex justify-end w-full top-1 right-1 absolute z-10">
+                <button on:click={handleCloseSplit} class="rounded-full flex justify-center w-6 items-center aspect-square transition-colors bg-transparent hover:bg-border">
+                  <Fa icon={faXmark} />
+                </button>
+              </div>
+            {/if}
             {#if $module === null}
               <p class="text-lg">No information to show.</p>
             {:else}
