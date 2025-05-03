@@ -69,9 +69,9 @@
         conlang.tools is a cohesive <Link external href="https://en.wikipedia.org/wiki/Constructed_language">conlanging</Link> toolset with a focus on naturalistic language creation and evolution.
       </p>
       <div class="mt-8 max-w-full text-lg bg-soft-tight">
-        <p class="mb-4">The website is currently undergoing a facelift, and the engine itself is currently being re-written from scratch. For more information, or to find your old projects, head over to the <Link external href="https://old.conlang.tools/future">old site</Link>.</p>
+        <p class="mb-4">This website and the underlying engine are in very early access. The tools and information presented here are subject to radical change, and many features are still a work in progress.</p>
         <p class="font-semibold">
-          Don't forget to <Link external href="https://discord.gg/yc5E5qbk6S" class="!text-blurple">join the Discord server</Link> for development updates & support.
+          Feel free to <Link external href="https://discord.gg/yc5E5qbk6S" class="!text-blurple">join the Discord server</Link> for development updates & support.
         </p>
       </div>
       <ScrollToContentButton hash="about" />
